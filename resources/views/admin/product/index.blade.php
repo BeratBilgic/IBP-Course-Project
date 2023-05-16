@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Admin Panel')
+@section('title', 'Product List')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -39,8 +39,8 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Is Actice</th>
-                            <th style="width: 40px">Edit</th>
                             <th style="width: 40px">Show</th>
+                            <th style="width: 40px">Edit</th>
                             <th style="width: 40px">Delete</th>
                         </tr>
                         </thead>
@@ -53,10 +53,10 @@
                                 <td>{{$rs->price}}</td>
                                 <td>{{$rs->quantity}}</td>
                                 <td>{{$rs->isActive}}</td>
+                                <td><a href="{{route('admin.product.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm">Show</a>  </td>
                                 <td><a href="{{route('admin.product.edit',['id'=>$rs->id])}}" class="btn btn-block btn-info btn-sm">Edit</a>  </td>
                                 <td><a href="{{route('admin.product.destroy',['id'=>$rs->id])}}" class="btn btn-block btn-danger btn-sm"
                                        onclick="return confirm('Deleting !! Are you sure ?')">Delete</a>  </td>
-                                <td><a href="{{route('admin.product.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm">Show</a>  </td>
                             </tr>
                         @endforeach
                         </tbody>
