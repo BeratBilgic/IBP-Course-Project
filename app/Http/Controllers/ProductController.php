@@ -44,32 +44,47 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $product,$id)
     {
-        //
+        $data= Product::find($id);
+        return  view('admin.product.show',[
+            'data' => $data
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $id)
     {
-        //
+        $data = Product::find($id);
+        return view('admin.product.edit',[
+            'data' => $data
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, $id)
     {
-        //
+        $data = Product::find($id);
+        $data->name = $request->name;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->quantity = $request->quantity;
+        $data->isActive = (Str::lower($request->isActive) === "true") ? true : false ;
+        $data->save();
+        return redirect('admin/product');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, $id)
     {
-        //
+        $data= Product::find($id);
+        $data->delete();
+        return redirect('admin/product');
     }
 }

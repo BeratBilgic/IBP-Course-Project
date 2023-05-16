@@ -45,5 +45,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
+// ******************** USER PANEL ROUTES *************************
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/',[HomeController::class,'index']);
+
+// ******************** USER PRODUCT ROUTES *************************
+    Route::prefix('product')->controller(ProductController::class)->name('product.')->group(function () {
+
+    });
+});
+
 
 
