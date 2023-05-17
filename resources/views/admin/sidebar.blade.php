@@ -13,7 +13,8 @@
                 <img src="{{asset('assets')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ Auth::user()->name ?? 'User'}}</a>
+                <a href="{{route('logoutuser')}}" class="d-block">LOGOUT</a>
             </div>
         </div>
 
@@ -58,7 +59,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="{{route('admin.user.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Users
@@ -83,6 +84,14 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p>Informational</p>
+                    </a>
+                </li>
+
+                <li class="nav-header">Settings</li>
+                <li class="nav-item">
+                    <a href="/admin/setting" class="nav-link">
+                        <i class="nav-icon fas fa-tools"></i>
+                        <p class="text">Settings</p>
                     </a>
                 </li>
             </ul>

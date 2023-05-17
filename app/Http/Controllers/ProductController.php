@@ -39,6 +39,7 @@ class ProductController extends Controller
         $data->quantity = $request->quantity;
         $data->isActive = (Str::lower($request->isActive) === "true") ? true : false ;
         $data->save();
+        return redirect(route('admin.product.show', ['id'=>$data->id]));
     }
 
     /**
@@ -75,7 +76,7 @@ class ProductController extends Controller
         $data->quantity = $request->quantity;
         $data->isActive = (Str::lower($request->isActive) === "true") ? true : false ;
         $data->save();
-        return redirect('admin/product');
+        return redirect(route('admin.product.index'));
     }
 
     /**
@@ -85,6 +86,6 @@ class ProductController extends Controller
     {
         $data= Product::find($id);
         $data->delete();
-        return redirect('admin/product');
+        return redirect(route('admin.product.index'));
     }
 }

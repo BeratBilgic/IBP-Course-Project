@@ -5,7 +5,7 @@
     <title>@yield("title")</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel</title>
+    <title>User Panel</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,15 +17,15 @@
 </head>
 
 <body>
-@include("admin.header")
+@include("user.header")
 
 @section('sidebar')
-    @include("admin.sidebar")
+    @include("user.sidebar")
 @show
 
 @yield('content')
 
-<@include("admin.footer")
+<@include("user.footer")
 @yield('foot')
 </body>
 </html>
