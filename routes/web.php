@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
+use App\Http\Controllers\AdminPanel\PasswordController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
@@ -38,10 +39,10 @@ Route::get('/logoutuser', [AuthController::class,'logout'])->name('logoutuser');
 Route::post('/authenticate', [AuthController::class,'authenticate'])->name('authenticate');
 
 // ******************** USER AUTH CONTROL *************************
-Route::middleware('auth')->group(function () {
+//Route::middleware('auth')->group(function () {
 
     // ******************** ADMIN PANEL ROUTES *************************
-    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/',[AdminHomeController::class,'index'])->name('index');
         // ******************** General Routes ROUTES *************************
         Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
@@ -61,12 +62,19 @@ Route::middleware('auth')->group(function () {
         // ******************** ADMIN USER ROUTES *************************
         Route::prefix('user')->controller(AdminUserController::class)->name('user.')->group(function () {
             Route::get('/','index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
             Route::get('/show/{id}','show')->name('show');
             Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
             Route::post('/addrole/{id}','addRole')->name('addrole');
             Route::get('/destroyrole/{uid}/{rid}','destroyRole')->name('destroyrole');
+        });
+
+        // ******************** ADMIN USER PASSWORD ROUTES *************************
+        Route::prefix('password')->controller(PasswordController::class)->name('password.')->group(function () {
+            Route::post('/update/{id}','update')->name('update');
         });
     }); // Admin Panel Routes group
 
@@ -80,7 +88,7 @@ Route::middleware('auth')->group(function () {
         });
     }); // User Panel Routes group
 
-}); // User auth. Group
+//}); // User auth. Group
 
 
 

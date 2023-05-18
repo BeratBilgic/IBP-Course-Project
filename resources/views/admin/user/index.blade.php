@@ -41,6 +41,7 @@
                             <th>Email</th>
                             <th>Role</th>
                             <th style="width: 40px">Show</th>
+                            <th style="width: 40px">Edit</th>
                             <th style="width: 40px">Delete</th>
                         </tr>
                         </thead>
@@ -52,17 +53,12 @@
                                 <td>{{$rs->email}} </td>
                                 <td>
                                     @foreach ($rs->roles as $role)
-                                        {{$role->name}}
+                                        <li>{{$role->name}}</li>
                                     @endforeach
-
                                 </td>
 
-                                <td>
-                                    <a href="{{route('admin.user.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm"
-                                       onclick="return !window.open(this.href, '','top=50 left=100 width=1100,height=700')">
-                                        Show
-                                    </a>
-                                </td>
+                                <td><a href="{{route('admin.user.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm">Show</a>  </td>
+                                <td><a href="{{route('admin.user.edit',['id'=>$rs->id])}}" class="btn btn-block btn-info btn-sm">Edit</a>  </td>
                                 <td><a href="{{route('admin.user.destroy',['id'=>$rs->id])}}" class="btn btn-block btn-danger btn-sm"
                                        onclick="return confirm('Deleting !! Are you sure ?')">Delete</a>  </td>
 
@@ -72,15 +68,6 @@
                     </table>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-right">
-                        <li class="page-item"><a class="page-link" href="#">«</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                    </ul>
-                </div>
             </div>
             <!-- /.card -->
 

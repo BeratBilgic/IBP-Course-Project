@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Show Product</li>
+                            <li class="breadcrumb-item active">Show User</li>
                         </ol>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
         <!-- Main content -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Detail User Data</h3>
+                <h3 class="card-title">User Detail Page</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -46,14 +46,15 @@
                         <td>{{$data->email}}</td>
                     </tr>
                     <tr>
+                        <th>Password Encrypted</th>
+                        <td>{{$data->password}}</td>
+                    </tr>
+                    <tr>
                         <th>Roles</th>
                         <td>
                             @foreach ($data->roles as $role)
-                                {{$role->name}}
-                                <a href="{{route('admin.user.destroyrole',['uid'=>$data->id,'rid'=>$role->id ])}}"
-                                   onclick="return confirm('Deleting !! Are you sure ?')">[x]</a>
+                                <li>{{$role->name}}</li>
                             @endforeach
-
                         </td>
                     </tr>
                     <tr>
@@ -64,28 +65,20 @@
                         <th >Update Date</th>
                         <td>{{$data->updated_at}}</td>
                     </tr>
-                    <tr>
-                        <th >Add Role to User</th>
-                        <td>
-                            <form role="form" action="{{route('admin.user.addrole',['id'=>$data->id])}}" method="post" >
-                                @csrf
-                                <select name="role_id">
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
-
-                                    @endforeach
-                                </select>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Add Role</button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-
 
                 </table>
             </div>
                 <!-- /.card-body -->
+            </div>
+            <div class="container-fluid">
+                <div class="row mb-2 justify-content-end">
+                    <div class="col-sm-3">
+                        <a href="{{route('admin.user.edit',['id'=>$data->id])}}" class="btn btn-block bg-gradient-info" style="width: 200px">Edit</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="{{route('admin.user.destroy',['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')" class="btn btn-block bg-gradient-danger" style="width: 200px">Delete</a>
+                    </div>
+                </div>
             </div>
         </section>
 

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class AdminUserController extends Controller
 {
@@ -26,15 +28,18 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,
+                          CreatesNewUsers $creator)
     {
-        //
+        event(new Registered($user = $creator->create($request->all())));
+
+        return redirect(route('admin.user.show', ['id'=>$user->id]));
     }
 
     /**
@@ -55,9 +60,11 @@ class AdminUserController extends Controller
      */
     public function edit(string $id)
     {
-        $data = User::find($id);
-        return view('admin.user.edit',[
-            'data' => $data
+        $data= User::find($id);
+        $roles= Role::all();
+        return  view('admin.user.edit',[
+            'data' => $data,
+            'roles' => $roles
         ]);
     }
 
@@ -69,9 +76,11 @@ class AdminUserController extends Controller
         $data = User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->role = $request->role;
         $data->save();
-        return redirect(route('admin.user.index'));
+        $roles= Role::all();
+        return redirect()->route('admin.user.edit', [
+            'id'=>$id
+        ]);
     }
 
     /**
@@ -86,12 +95,17 @@ class AdminUserController extends Controller
 
     public function addRole(Request $request, $id)
     {
-        $data = new RoleUser();
-        $data->user_id = $id;
-        $data->role_id = $request->role_id;
-        $data->save();
+        $exists = RoleUser::where('user_id', $id)
+            ->where('role_id', $request->role_id)
+            ->exists();
+        if (!$exists) {
+            $data = new RoleUser();
+            $data->user_id = $id;
+            $data->role_id = $request->role_id;
+            $data->save();
+        }
 
-        return redirect()->route('admin.user.show', [
+        return redirect()->route('admin.user.edit', [
             'id'=>$id
         ]);
     }
@@ -100,7 +114,7 @@ class AdminUserController extends Controller
     {
         $user = User::find($uid);
         $user->roles()->detach($rid);
-        return redirect()->route('admin.user.show', [
+        return redirect()->route('admin.user.edit', [
             'id'=>$uid,
         ]);
     }
