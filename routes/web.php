@@ -3,8 +3,9 @@
 use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\PasswordController;
+use App\Http\Controllers\AdminPanel\ProductController;
+use App\Http\Controllers\AdminPanel\ProfileController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -74,7 +75,18 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
 
         // ******************** ADMIN USER PASSWORD ROUTES *************************
         Route::prefix('password')->controller(PasswordController::class)->name('password.')->group(function () {
+            Route::post('/update','update')->name('update');
+            Route::post('/reset/{id}','reset')->name('reset');
+        });
+
+        // ******************** ADMIN USER ROUTES *************************
+        Route::prefix('profile')->controller(ProfileController::class)->name('profile.')->group(function () {
+            Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
+            Route::post('/addrole/{id}','addRole')->name('addrole');
+            Route::get('/destroyrole/{uid}/{rid}','destroyRole')->name('destroyrole');
+            Route::post('/updatepassword','updatePassword')->name('updatePassword');
         });
     }); // Admin Panel Routes group
 
