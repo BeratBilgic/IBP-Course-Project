@@ -41,7 +41,6 @@
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
                                         <li class="nav-item"><a class="nav-link active" href="#profileInformation" data-toggle="tab">Profile Information</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#manageUserRole" data-toggle="tab">Manage User Role</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#updatePassword" data-toggle="tab">Update Password</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#deleteAccount" data-toggle="tab">Delete Account</a></li>
                                     </ul>
@@ -49,8 +48,6 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         @include("admin.profile.profileInformation")
-                                        <!-- /.tab-pane -->
-                                        @include("admin.profile.manageUserRole")
                                         <!-- /.tab-pane -->
                                         @include("admin.profile.updatePassword")
                                         <!-- /.tab-pane -->

@@ -49,37 +49,4 @@ class ProfileController extends Controller
         $data->delete();
         return redirect(route('logoutuser'));
     }
-
-    public function addRole(Request $request, $id)
-    {
-        $exists = RoleUser::where('user_id', $id)
-            ->where('role_id', $request->role_id)
-            ->exists();
-        if (!$exists) {
-            $data = new RoleUser();
-            $data->user_id = $id;
-            $data->role_id = $request->role_id;
-            $data->save();
-        }
-
-        return redirect()->route('admin.profile.edit', [
-            'id'=>$id
-        ]);
-    }
-
-    public function destroyRole(User $user, $uid, $rid)
-    {
-        $user = User::find($uid);
-        $user->roles()->detach($rid);
-        return redirect()->route('admin.profile.edit', [
-            'id'=>$uid,
-        ]);
-    }
-
-    public function updatePassword(Request $request, UpdatesUserPasswords $updater)
-    {
-        $updater->update($request->user(), $request->all());
-
-        return app(PasswordUpdateResponse::class);
-    }
 }

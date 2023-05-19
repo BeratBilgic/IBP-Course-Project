@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
-use App\Http\Controllers\AdminPanel\PasswordController;
-use App\Http\Controllers\AdminPanel\ProductController;
-use App\Http\Controllers\AdminPanel\ProfileController;
+use App\Http\Controllers\AdminPanel\PasswordController as AdminPasswordController;
+use App\Http\Controllers\AdminPanel\ProductController as AdminProductController;
+use App\Http\Controllers\AdminPanel\ProfileController as AdminProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
+use App\Http\Controllers\UserPanel\ProductController as UserProductController;
+use App\Http\Controllers\UserPanel\PasswordController as UserPasswordController;
+use App\Http\Controllers\UserPanel\ProfileController as UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +53,7 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
         Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('setting.update');
 
         // ******************** ADMIN PRODUCT ROUTES *************************
-        Route::prefix('product')->controller(ProductController::class)->name('product.')->group(function () {
+        Route::prefix('product')->controller(AdminProductController::class)->name('product.')->group(function () {
             Route::get('/','index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
@@ -74,29 +77,40 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
         });
 
         // ******************** ADMIN USER PASSWORD ROUTES *************************
-        Route::prefix('password')->controller(PasswordController::class)->name('password.')->group(function () {
+        Route::prefix('password')->controller(AdminPasswordController::class)->name('password.')->group(function () {
             Route::post('/update','update')->name('update');
             Route::post('/reset/{id}','reset')->name('reset');
         });
 
-        // ******************** ADMIN USER ROUTES *************************
-        Route::prefix('profile')->controller(ProfileController::class)->name('profile.')->group(function () {
+        // ******************** ADMIN PROFILE ROUTES *************************
+        Route::prefix('profile')->controller(AdminProfileController::class)->name('profile.')->group(function () {
             Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
-            Route::post('/addrole/{id}','addRole')->name('addrole');
-            Route::get('/destroyrole/{uid}/{rid}','destroyRole')->name('destroyrole');
-            Route::post('/updatepassword','updatePassword')->name('updatePassword');
         });
     }); // Admin Panel Routes group
 
     // ******************** USER PANEL ROUTES *************************
     Route::prefix('user')->name('user.')->group(function () {
-        Route::get('/',[UserHomeController::class,'index']);
+        Route::get('/',[UserHomeController::class,'index'])->name('index');
 
-    // ******************** USER PRODUCT ROUTES *************************
-        Route::prefix('product')->controller(ProductController::class)->name('product.')->group(function () {
+        // ******************** USER PRODUCT ROUTES *************************
+        Route::prefix('product')->controller(UserProductController::class)->name('product.')->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/show/{id}','show')->name('show');
+            Route::get('/search','search')->name('search');
+        });
 
+        // ******************** USER PASSWORD ROUTES *************************
+        Route::prefix('password')->controller(UserPasswordController::class)->name('password.')->group(function () {
+            Route::post('/update','update')->name('update');
+        });
+
+        // ******************** ADMIN PROFILE ROUTES *************************
+        Route::prefix('profile')->controller(UserProfileController::class)->name('profile.')->group(function () {
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
         });
     }); // User Panel Routes group
 
