@@ -61,6 +61,7 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
             Route::get('/show/{id}','show')->name('show');
+            Route::get('/search','search')->name('search');
         });
 
         // ******************** ADMIN USER ROUTES *************************

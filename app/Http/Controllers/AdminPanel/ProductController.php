@@ -16,7 +16,8 @@ class ProductController extends Controller
     {
         $data = Product::all();
         return view('admin.product.index',[
-            'data' => $data
+            'data' => $data,
+            'search' => ""
         ]);
     }
 
@@ -88,5 +89,24 @@ class ProductController extends Controller
         $data= Product::find($id);
         $data->delete();
         return redirect(route('admin.product.index'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'LIKE', "%$searchTerm%");
+        }
+
+        $query->orderBy('name', 'asc');
+
+        $data = $query->get();
+
+        return view('admin.product.index',[
+            'data' => $data,
+            'search' => $searchTerm
+        ]);
     }
 }
