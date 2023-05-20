@@ -66,10 +66,15 @@
             <div class="container-fluid">
                 <div class="row mb-2 justify-content-end">
                     <div class="col-sm-3">
+                        <a href="{{route('admin.announcement.publish',['id'=>$data->id])}}"
+                           onclick="return confirm('Publishing !! Are you sure ?')" class="btn btn-block btn-warning btn-sm" style="width: 200px">Publish</a>
+                    </div>
+                    <div class="col-sm-3">
                         <a href="{{route('admin.announcement.edit',['id'=>$data->id])}}" class="btn btn-block bg-gradient-info" style="width: 200px">Edit</a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="{{route('admin.announcement.destroy',['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')" class="btn btn-block bg-gradient-danger" style="width: 200px">Delete</a>
+                        <a href="{{route('admin.announcement.destroy',['id'=>$data->id])}}"
+                           onclick="return confirm('Deleting !! Are you sure ?')" class="btn btn-block bg-gradient-danger" style="width: 200px">Delete</a>
                     </div>
                 </div>
             </div>

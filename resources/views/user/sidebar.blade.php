@@ -41,6 +41,12 @@
                         <p class="text">Product List</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('user.announcement.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p class="text">Announcement List</p>
+                    </a>
+                </li>
                 <li class="nav-header">LABELS</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

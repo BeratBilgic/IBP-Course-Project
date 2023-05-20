@@ -11,6 +11,7 @@ use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
 use App\Http\Controllers\UserPanel\ProductController as UserProductController;
 use App\Http\Controllers\UserPanel\PasswordController as UserPasswordController;
 use App\Http\Controllers\UserPanel\ProfileController as UserProfileController;
+use App\Http\Controllers\UserPanel\AnnouncementController as UserAnnouncementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -120,11 +121,17 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
             Route::post('/update','update')->name('update');
         });
 
-        // ******************** ADMIN PROFILE ROUTES *************************
+        // ******************** USER PROFILE ROUTES *************************
         Route::prefix('profile')->controller(UserProfileController::class)->name('profile.')->group(function () {
             Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
+        });
+
+        // ******************** USER Announcement ROUTES *************************
+        Route::prefix('announcement')->controller(UserAnnouncementController::class)->name('announcement.')->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/show/{id}','show')->name('show');
         });
     }); // User Panel Routes group
 
