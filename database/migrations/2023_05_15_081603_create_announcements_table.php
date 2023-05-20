@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sender_id');
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
+            $table->boolean('isPublished')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps(); //  Laravel will create both the created_at and updated_at columns.
         });
     }
