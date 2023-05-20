@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Show Product: {{$data->name}}')
+@section('title', 'Show Announcement')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Show Product</li>
+                            <li class="breadcrumb-item active">Show Announcement</li>
                         </ol>
                     </div>
                 </div>
@@ -32,24 +32,24 @@
                 <div class="card-body">
                     <table class="table table-striped">
                         <tr>
-                            <th>Name</th>
-                            <td>{{$data->name}}</td>
+                            <th>Sender</th>
+                            <td>{{$data->sender->name}}</td>
                         </tr>
                         <tr>
-                            <th>Description</th>
-                            <td>{{$data->description}}</td>
+                            <th>Title</th>
+                            <td>{{$data->title}}</td>
                         </tr>
                         <tr>
-                            <th>Price</th>
-                            <td>{{$data->price}}</td>
+                            <th>Content</th>
+                            <td>{{$data->content}}</td>
                         </tr>
                         <tr>
-                            <th>Quantity</th>
-                            <td>{{$data->quantity}}</td>
+                            <th>Is Published</th>
+                            <td>{{$data->isPublished}}</td>
                         </tr>
                         <tr>
-                            <th>Is Active</th>
-                            <td>{{$data->isActive}}</td>
+                            <th>Published at</th>
+                            <td>{{$data->published_at}}</td>
                         </tr>
                         <tr>
                             <th>Created at</th>
@@ -66,10 +66,10 @@
             <div class="container-fluid">
                 <div class="row mb-2 justify-content-end">
                     <div class="col-sm-3">
-                        <a href="{{route('admin.product.edit',['id'=>$data->id])}}" class="btn btn-block bg-gradient-info" style="width: 200px">Edit</a>
+                        <a href="{{route('admin.announcement.edit',['id'=>$data->id])}}" class="btn btn-block bg-gradient-info" style="width: 200px">Edit</a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="{{route('admin.product.destroy',['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')" class="btn btn-block bg-gradient-danger" style="width: 200px">Delete</a>
+                        <a href="{{route('admin.announcement.destroy',['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')" class="btn btn-block bg-gradient-danger" style="width: 200px">Delete</a>
                     </div>
                 </div>
             </div>

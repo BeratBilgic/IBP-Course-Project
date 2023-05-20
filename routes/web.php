@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\PasswordController as AdminPasswordController;
 use App\Http\Controllers\AdminPanel\ProductController as AdminProductController;
 use App\Http\Controllers\AdminPanel\ProfileController as AdminProfileController;
+use App\Http\Controllers\AdminPanel\AnnouncementController as AdminAnnouncementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
 use App\Http\Controllers\UserPanel\ProductController as UserProductController;
@@ -88,6 +89,18 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
             Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
+        });
+
+        // ******************** ADMIN Announcement ROUTES *************************
+        Route::prefix('announcement')->controller(AdminAnnouncementController::class)->name('announcement.')->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
+            Route::get('/show/{id}','show')->name('show');
+            Route::get('/publish/{id}','publish')->name('publish');
         });
     }); // Admin Panel Routes group
 
