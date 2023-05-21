@@ -25,6 +25,8 @@
 
 @yield('content')
 
+@yield('scripts')
+
 <@include("admin.footer")
 @yield('foot')
 </body>

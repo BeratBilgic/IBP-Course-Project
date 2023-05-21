@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminPanel\PasswordController as AdminPasswordControlle
 use App\Http\Controllers\AdminPanel\ProductController as AdminProductController;
 use App\Http\Controllers\AdminPanel\ProfileController as AdminProfileController;
 use App\Http\Controllers\AdminPanel\AnnouncementController as AdminAnnouncementController;
+use App\Http\Controllers\AdminPanel\ChatController as AdminChatController;
+use App\Http\Controllers\AdminPanel\MessageController as AdminMessageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserPanel\HomeController as UserHomeController;
 use App\Http\Controllers\UserPanel\ProductController as UserProductController;
@@ -45,7 +47,7 @@ Route::get('/logoutuser', [AuthController::class,'logout'])->name('logoutuser');
 Route::post('/authenticate', [AuthController::class,'authenticate'])->name('authenticate');
 
 // ******************** USER AUTH CONTROL *************************
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
 
     // ******************** ADMIN PANEL ROUTES *************************
     Route::prefix('admin')->name('admin.')->group(function () {
@@ -103,6 +105,20 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
             Route::get('/show/{id}','show')->name('show');
             Route::get('/publish/{id}','publish')->name('publish');
         });
+
+        // ******************** ADMIN CHAT ROUTES *************************
+        Route::prefix('chat')->controller(AdminChatController::class)->name('chat.')->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/show/{id}','show')->name('show');
+        });
+
+        // ******************** ADMIN MESSAGE ROUTES *************************
+        Route::prefix('message')->controller(AdminMessageController::class)->name('message.')->group(function () {
+            Route::post('/store', 'store')->name('store');
+        });
+
     }); // Admin Panel Routes group
 
     // ******************** USER PANEL ROUTES *************************
@@ -135,7 +151,7 @@ Route::post('/authenticate', [AuthController::class,'authenticate'])->name('auth
         });
     }); // User Panel Routes group
 
-//}); // User auth. Group
+}); // User auth. Group
 
 
 
