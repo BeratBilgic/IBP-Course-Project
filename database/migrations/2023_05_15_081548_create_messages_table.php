@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recipient_id');
+            $table->foreignId('chat_id');
             $table->foreignId('sender_id');
             $table->string('content');
-            $table->boolean('isRead');
+            $table->boolean('isRead')->default(false);
             $table->timestamp('read_at')->nullable();
             $table->timestamps(); //  Laravel will create both the created_at and updated_at columns.
         });
