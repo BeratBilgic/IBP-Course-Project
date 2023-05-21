@@ -16,16 +16,24 @@
     @yield("head")
 </head>
 
-<body>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
 @include("user.header")
 
-@section('sidebar')
-    @include("user.sidebar")
-@show
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
+    </div>
 
-@yield('content')
+@yield('scripts')
 
 <@include("user.footer")
 @yield('foot')
+
+</div>
 </body>
 </html>
