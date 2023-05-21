@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanel;
+namespace App\Http\Controllers\UserPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
@@ -43,7 +43,7 @@ class MessageController extends Controller
             $message->save();
         }
 
-        return redirect()->route('admin.chat.show', [
+        return redirect()->route('user.chat.show', [
             'id'=>$chatId
         ]);
     }

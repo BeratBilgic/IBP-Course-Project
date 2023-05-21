@@ -14,6 +14,8 @@ use App\Http\Controllers\UserPanel\ProductController as UserProductController;
 use App\Http\Controllers\UserPanel\PasswordController as UserPasswordController;
 use App\Http\Controllers\UserPanel\ProfileController as UserProfileController;
 use App\Http\Controllers\UserPanel\AnnouncementController as UserAnnouncementController;
+use App\Http\Controllers\UserPanel\ChatController as UserChatController;
+use App\Http\Controllers\UserPanel\MessageController as UserMessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -148,6 +150,19 @@ Route::middleware('auth')->group(function () {
         Route::prefix('announcement')->controller(UserAnnouncementController::class)->name('announcement.')->group(function () {
             Route::get('/','index')->name('index');
             Route::get('/show/{id}','show')->name('show');
+        });
+
+        // ******************** ADMIN CHAT ROUTES *************************
+        Route::prefix('chat')->controller(UserChatController::class)->name('chat.')->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/show/{id}','show')->name('show');
+        });
+
+        // ******************** ADMIN MESSAGE ROUTES *************************
+        Route::prefix('message')->controller(UserMessageController::class)->name('message.')->group(function () {
+            Route::post('/store', 'store')->name('store');
         });
     }); // User Panel Routes group
 
