@@ -11,5 +11,6 @@
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
 
+*.blade linguist-detectable=false
 *.js linguist-detectable=false
 *.css linguist-detectable=false
