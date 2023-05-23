@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('chat_id');
             $table->foreignId('sender_id');
             $table->string('content');
+            $table->boolean('isSent')->default(false);
             $table->boolean('isRead')->default(false);
+            $table->timestamp('sent_at')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->timestamps(); //  Laravel will create both the created_at and updated_at columns.
         });

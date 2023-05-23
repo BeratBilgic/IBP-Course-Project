@@ -7,6 +7,7 @@ use App\Models\Chat;
 use App\Models\ChatUser;
 use App\Models\Message;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -78,6 +79,17 @@ class ChatController extends Controller
     {
         $chat = auth()->user()->chats;
         $data = Chat::find($id);
+        $unreadMessages = $data->messages()
+            ->where('isRead', false)
+            ->where('sender_id', '!=', auth()->id())
+            ->get();
+
+        $now = Carbon::now('Europe/Istanbul');
+        foreach ($unreadMessages as $message) {
+            $message->isRead = true;
+            $message->read_at = $now;
+            $message->save();
+        }
 
         return view('user.chat.show',[
             'chat' => $chat,

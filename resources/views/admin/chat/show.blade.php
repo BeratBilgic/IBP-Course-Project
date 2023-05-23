@@ -57,7 +57,11 @@
                                         <div class="direct-chat-msg right">
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-right">{{$rs->sender->name}}</span>
-                                                <span class="direct-chat-timestamp float-left">{{$rs->created_at}} pm</span>
+                                                <span class="direct-chat-timestamp float-left">
+                                                @php
+                                                    echo \Carbon\Carbon::parse($rs->sent_at)->format('d M g:i a');
+                                                @endphp
+                                                </span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{asset('assets')}}/dist/img/userprofile-128x128.png" alt="message user image">
@@ -67,6 +71,19 @@
                                                 @if($rs->isRead)
                                                     <i class="fas fa-check-circle"></i>
                                                 @endif
+                                                <div class="dropdown show-time-dropdown float-right">
+                                                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </span>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        @if($rs->isSent)
+                                                            <a class="dropdown-item" href="#">{{$rs->sent_at}} (Sent)</a>
+                                                        @endif
+                                                        @if($rs->isRead)
+                                                            <a class="dropdown-item" href="#">{{$rs->read_at}} (Read)</a>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- /.direct-chat-text -->
                                         </div>
@@ -76,16 +93,35 @@
                                         <div class="direct-chat-msg">
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-left">{{$rs->sender->name}}</span>
-                                                <span class="direct-chat-timestamp float-right">{{$rs->created_at}} pm</span>
+                                                <span class="direct-chat-timestamp float-right">
+                                                @php
+                                                    echo \Carbon\Carbon::parse($rs->sent_at)->format('d M g:i a');
+                                                @endphp
+                                                </span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{asset('assets')}}/dist/img/userprofile-128x128.png" alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
-                                                {{$rs->content}}
-                                                @if($rs->isRead)
-                                                    <i class="fas fa-check-circle"></i>
-                                                @endif
+                                                <div class="message-content">
+                                                    {{$rs->content}}
+                                                    @if($rs->isRead)
+                                                        <i class="fas fa-check-circle"></i>
+                                                    @endif
+                                                    <div class="dropdown show-time-dropdown float-right">
+                                                        <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </span>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            @if($rs->isSent)
+                                                                <a class="dropdown-item" href="#">{{$rs->sent_at}} (Sent)</a>
+                                                            @endif
+                                                            @if($rs->isRead)
+                                                                <a class="dropdown-item" href="#">{{$rs->read_at}} (Read)</a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- /.direct-chat-text -->
                                         </div>

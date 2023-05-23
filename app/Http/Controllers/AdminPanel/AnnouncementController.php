@@ -89,7 +89,7 @@ class AnnouncementController extends Controller
     {
         $data = Announcement::find($id);
         $data->isPublished = true;
-        $data->published_At = Carbon::now();
+        $data->published_At = Carbon::now('Europe/Istanbul');
         $data->save();
         return redirect(route('admin.announcement.index'));
     }

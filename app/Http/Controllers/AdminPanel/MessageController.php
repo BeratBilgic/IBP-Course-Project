@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Message;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -39,6 +40,8 @@ class MessageController extends Controller
             $message = new Message();
             $message->chat()->associate($chat);
             $message->sender()->associate($currentUser);
+            $message->isSent = true;
+            $message->sent_at = Carbon::now('Europe/Istanbul');
             $message->content = $content;
             $message->save();
         }
