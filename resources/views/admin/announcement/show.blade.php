@@ -66,8 +66,16 @@
             <div class="container-fluid">
                 <div class="row mb-2 justify-content-end">
                     <div class="col-sm-3">
-                        <a href="{{route('admin.announcement.publish',['id'=>$data->id])}}"
-                           onclick="return confirm('Publishing !! Are you sure ?')" class="btn btn-block btn-warning btn-sm" style="width: 200px">Publish</a>
+                        @if (!$data->isPublished)
+                            <td><a href="{{route('admin.announcement.publish',['id'=>$data->id])}}" class="btn btn-block btn-warning" style="width: 200px"
+                                   onclick="return confirm('Publishing !! Are you sure ?')">Publish</a>  </td>
+                        @else
+                            <td>
+                                <div class="btn btn-block btn-warning disabled" style="width: 200px">
+                                    Published
+                                </div>
+                            </td>
+                        @endif
                     </div>
                     <div class="col-sm-3">
                         <a href="{{route('admin.announcement.edit',['id'=>$data->id])}}" class="btn btn-block bg-gradient-info" style="width: 200px">Edit</a>

@@ -31,7 +31,7 @@
 
 @yield('scripts')
 
-<@include("user.footer")
+@include("user.footer")
 @yield('foot')
 
 </div>

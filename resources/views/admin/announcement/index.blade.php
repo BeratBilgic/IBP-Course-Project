@@ -66,11 +66,10 @@
                                            onclick="return confirm('Publishing !! Are you sure ?')">Publish</a>  </td>
                                 @else
                                     <td>
-                                        <div class="bg-warning disabled color-palette">
+                                        <div class="btn btn-block btn-warning disabled btn-sm">
                                             Published
                                         </div>
                                     </td>
-
                                 @endif
                                 <td><a href="{{route('admin.announcement.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm">Show</a>  </td>
                                 <td><a href="{{route('admin.announcement.edit',['id'=>$rs->id])}}" class="btn btn-block btn-info btn-sm">Edit</a>  </td>

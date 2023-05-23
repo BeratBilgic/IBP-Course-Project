@@ -24,41 +24,43 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <!-- Main content -->
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <!-- small card -->
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{$productCount}}</h3>
-
-                                <p>Products</p>
+                    <div class="col-lg-6 col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="small-box bg-info">
+                                            <div class="inner">
+                                                <h3 class="text-white">{{$productCount}}</h3>
+                                                <p class="text-white">Products</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-cube"></i>
+                                            </div>
+                                            <a href="{{route('user.product.index')}}" class="small-box-footer">
+                                                More info <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="small-box bg-info">
+                                            <div class="inner">
+                                                <h3 class="text-white">{{$chatCount}}</h3>
+                                                <p class="text-white">Chats</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-comments"></i>
+                                            </div>
+                                            <a href="{{route('user.chat.index')}}" class="small-box-footer">
+                                                More info <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-cube"></i>
-                            </div>
-                            <a href="{{route('user.product.index')}}" class="small-box-footer">
-                                More info <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small card -->
-                        <div class="small-box" style="background-color: #4babc9;">
-                            <div class="inner">
-                                <h3 class="text-white">{{$chatCount}}</h3>
-
-                                <p class="text-white">Chats</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <a href="{{route('user.chat.index')}}" class="small-box-footer">
-                                More info <i class="fas fa-arrow-circle-right"></i>
-                            </a>
                         </div>
                     </div>
                     <!-- /.col-md-6 -->
@@ -95,10 +97,9 @@
                     <!-- /.col-md-6 -->
                 </div>
                 <!-- /.row -->
-            </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.content -->
-    </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

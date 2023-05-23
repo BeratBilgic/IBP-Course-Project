@@ -64,6 +64,15 @@
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
                                                 {{$rs->content}}
+                                                <div class="dropdown show-time-dropdown float-right">
+                                                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </span>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#">{{$rs->created_at}} pm (Sent)</a>
+                                                        <a class="dropdown-item" href="#">{{$rs->read_at}} (Read)</a>
+                                                    </div>
+                                                </div>
                                                 @if($rs->isRead)
                                                     <i class="fas fa-check-circle"></i>
                                                 @endif
@@ -82,10 +91,18 @@
                                             <img class="direct-chat-img" src="{{asset('assets')}}/dist/img/userprofile-128x128.png" alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
-                                                {{$rs->content}}
-                                                @if($rs->isRead)
-                                                    <i class="fas fa-check-circle"></i>
-                                                @endif
+                                                <div class="message-content">
+                                                    {{$rs->content}}
+                                                    <div class="dropdown show-time-dropdown float-right">
+                                                        <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </span>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#">{{$rs->created_at}} pm (Sent)</a>
+                                                            <a class="dropdown-item" href="#">{{$rs->read_at}} (Read)</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- /.direct-chat-text -->
                                         </div>
@@ -94,7 +111,6 @@
                                 @endforeach
                             </div>
                             <!--/.direct-chat-messages-->
-                            <!-- /.direct-chat-pane -->
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
