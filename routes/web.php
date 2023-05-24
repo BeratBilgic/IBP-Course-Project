@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.login');
 });
 
 Route::middleware([
@@ -44,19 +44,18 @@ Route::middleware([
 });
 
 // ******************** HOME PAGE ROUTES *************************
-Route::view('/loginuser', 'home.login')->name('loginuser');;
-Route::get('/logoutuser', [AuthController::class,'logout'])->name('logoutuser');
+Route::view('/register', 'home.register')->name('register');
+Route::post('/store', [AuthController::class,'store'])->name('store');
+Route::view('/login', 'home.login')->name('login');;
 Route::post('/authenticate', [AuthController::class,'authenticate'])->name('authenticate');
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 // ******************** USER AUTH CONTROL *************************
 Route::middleware('auth')->group(function () {
 
     // ******************** ADMIN PANEL ROUTES *************************
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/',[AdminHomeController::class,'index'])->name('index');
-        // ******************** General Routes ROUTES *************************
-        Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
-        Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('setting.update');
 
         // ******************** ADMIN PRODUCT ROUTES *************************
         Route::prefix('product')->controller(AdminProductController::class)->name('product.')->group(function () {
