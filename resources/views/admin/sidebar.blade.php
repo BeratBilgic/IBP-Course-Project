@@ -14,7 +14,7 @@
             </div>
             <div class="info">
                 <a href="{{route('admin.profile.edit',['id'=>Auth::user()->id])}}" class="d-block">{{ Auth::user()->name ?? 'User'}}</a>
-                <a href="{{route('logoutuser')}}" class="d-block">Logout</a>
+                <a href="{{route('logout')}}" class="d-block">Logout</a>
             </div>
         </div>
 
@@ -114,14 +114,6 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-
-                <li class="nav-header">Settings</li>
-                <li class="nav-item">
-                    <a href="/admin/setting" class="nav-link">
-                        <i class="nav-icon fas fa-tools"></i>
-                        <p class="text">Settings</p>
-                    </a>
                 </li>
             </ul>
         </nav>

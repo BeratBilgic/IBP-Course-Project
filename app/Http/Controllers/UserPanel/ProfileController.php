@@ -47,6 +47,6 @@ class ProfileController extends Controller
     {
         $data= User::find($id);
         $data->delete();
-        return redirect(route('logoutuser'));
+        return redirect(route('logout'));
     }
 }

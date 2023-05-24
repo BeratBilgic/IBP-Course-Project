@@ -40,7 +40,7 @@
                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name ?? 'User'}}</a>
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
                     <li><a href="{{ route('user.profile.edit', ['id' => Auth::user()->id]) }}" class="dropdown-item">Profile</a></li>
-                    <li><a href="{{route('logoutuser')}}" class="dropdown-item">Logout</a></li>
+                    <li><a href="{{route('logout')}}" class="dropdown-item">Logout</a></li>
                 </ul>
             </li>
 

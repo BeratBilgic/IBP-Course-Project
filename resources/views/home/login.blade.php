@@ -17,11 +17,15 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="#" class="h1"><b>IBP</b>(Internet Based Programming) Course Project</a>
+            <a href="#" class="h1"><b>IBP</b> Login</a>
         </div>
         <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-@include('home.messages')
+            @error('error')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
             <form action="{{route('authenticate')}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
@@ -43,23 +47,14 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                                Remember Me
-                            </label>
+                            <a href="{{route('register')}}" class="text-center">Register a new membership</a>
                         </div>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    <div class="col-4 text-right">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
-
-            <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-            </p>
         </div>
         <!-- /.card-body -->
     </div>
