@@ -1,7 +1,6 @@
 * text=auto eol=lf
 
-*.blade.php diff=php
-*.blade diff=php
+*.blade.php diff=html
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
@@ -10,7 +9,3 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
-
-*.blade linguist-detectable=false
-*.js linguist-detectable=false
-*.css linguist-detectable=false
