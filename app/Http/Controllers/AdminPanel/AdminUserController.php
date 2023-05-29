@@ -19,7 +19,8 @@ class AdminUserController extends Controller
     {
         $data = User::all();
         return view('admin.user.index',[
-            'data' => $data
+            'data' => $data,
+            'search' => ""
         ]);
     }
 
@@ -116,6 +117,25 @@ class AdminUserController extends Controller
         $user->roles()->detach($rid);
         return redirect()->route('admin.user.edit', [
             'id'=>$uid,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = User::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'LIKE', "%$searchTerm%");
+        }
+
+        $query->orderBy('name', 'asc');
+
+        $data = $query->get();
+
+        return view('admin.user.index',[
+            'data' => $data,
+            'search' => $searchTerm
         ]);
     }
 }

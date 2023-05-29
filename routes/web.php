@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/destroy/{id}','destroy')->name('destroy');
             Route::post('/addrole/{id}','addRole')->name('addrole');
             Route::get('/destroyrole/{uid}/{rid}','destroyRole')->name('destroyrole');
+            Route::get('/search','search')->name('search');
         });
 
         // ******************** ADMIN USER PASSWORD ROUTES *************************
@@ -105,6 +106,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/destroy/{id}','destroy')->name('destroy');
             Route::get('/show/{id}','show')->name('show');
             Route::get('/publish/{id}','publish')->name('publish');
+            Route::get('/search','search')->name('search');
         });
 
         // ******************** ADMIN CHAT ROUTES *************************
@@ -149,6 +151,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('announcement')->controller(UserAnnouncementController::class)->name('announcement.')->group(function () {
             Route::get('/','index')->name('index');
             Route::get('/show/{id}','show')->name('show');
+            Route::get('/search','search')->name('search');
         });
 
         // ******************** ADMIN CHAT ROUTES *************************

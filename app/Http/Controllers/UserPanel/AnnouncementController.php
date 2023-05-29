@@ -18,7 +18,8 @@ class AnnouncementController extends Controller
             ->get();
 
         return view('user.announcement.index',[
-            'data' => $data
+            'data' => $data,
+            'search' => ""
         ]);
     }
 
@@ -71,5 +72,26 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement, $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = Announcement::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'LIKE', "%$searchTerm%")
+                    ->where('isPublished', true);
+
+        }
+
+        $query->orderBy('published_at', 'desc');
+
+        $data = $query->get();
+
+        return view('user.announcement.index',[
+            'data' => $data,
+            'search' => $searchTerm
+        ]);
     }
 }

@@ -16,7 +16,8 @@ class AnnouncementController extends Controller
     {
         $data = Announcement::orderBy('created_at', 'desc')->get();
         return view('admin.announcement.index',[
-            'data' => $data
+            'data' => $data,
+            'search' => ""
         ]);
     }
 
@@ -92,5 +93,24 @@ class AnnouncementController extends Controller
         $data->published_At = Carbon::now('Europe/Istanbul');
         $data->save();
         return redirect(route('admin.announcement.index'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = Announcement::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'LIKE', "%$searchTerm%");
+        }
+
+        $query->orderBy('title', 'asc');
+
+        $data = $query->get();
+
+        return view('admin.announcement.index',[
+            'data' => $data,
+            'search' => $searchTerm
+        ]);
     }
 }
