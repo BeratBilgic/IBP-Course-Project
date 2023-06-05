@@ -22,6 +22,7 @@ You can click on [this link](https://github.com/BeratBilgic/IBP-Course-Project/b
 <img src="https://github.com/BeratBilgic/IBP-Course-Project/blob/main/pictures/userPanel.png" width="700" />
 
 ## Example Video
+You can click on the picture and [this link](https://youtu.be/inNgTGAjtqM) to watch the video.
 
 <a href="https://youtu.be/inNgTGAjtqM" target="_blank">
  <img src="https://i9.ytimg.com/vi/inNgTGAjtqM/mq1.jpg?sqp=CICj-aMG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGH8gEygoMA8=&rs=AOn4CLDGOsDvxVGvt4TGO2MY9KH6ZN_3fg" alt="Watch the video" width="400" />
