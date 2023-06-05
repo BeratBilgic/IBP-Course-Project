@@ -1,6 +1,9 @@
 # IBP(Internet Based Programming) Course Project
 My project, which I created using PHP Laravel for the internet based programming course (CPE212).
 
+- PHP 8.1
+- Laravel 10.10.1
+- Database: MySQL
 - [Jetstream](https://jetstream.laravel.com/) is used for Authentication/Authorization.
 - I used the [AdminLTE](https://adminlte.io) Template to build the frontend.
 
@@ -17,3 +20,9 @@ You can click on [this link](https://github.com/BeratBilgic/IBP-Course-Project/b
 ## User Panel
 
 <img src="https://github.com/BeratBilgic/IBP-Course-Project/blob/main/pictures/userPanel.png" width="700" />
+
+## Example Video
+
+<a href="https://youtu.be/inNgTGAjtqM" target="_blank">
+ <img src="https://i9.ytimg.com/vi/inNgTGAjtqM/mq1.jpg?sqp=CICj-aMG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGH8gEygoMA8=&rs=AOn4CLDGOsDvxVGvt4TGO2MY9KH6ZN_3fg" alt="Watch the video" width="400" />
+</a>
